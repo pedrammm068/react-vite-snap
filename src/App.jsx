@@ -1,19 +1,27 @@
-import { BrowserRouter,  Route,  Routes } from "react-router-dom";
-import LoginPage from "./Pages/LogePage";
-import HomePage from "./Pages/HomePage";
+import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
+import CardPage from "./Pages/CardPage";
+import CartPage from "./Pages/CartPage";
+import HomePage from "./Pages/HomePage";
+import CartContext from "./contexts/Cartcontext"; 
 
 export default function App() {
-  return (
-    <>
-<Layout>
- <BrowserRouter>
- <Routes>
-  <Route path="/" element={<LoginPage />} />
-  <Route path="/home" element={<HomePage />} />
- </Routes>
- </BrowserRouter>
- </Layout>
-    </>
-  )
+    const [numberCart, setnumberCart] = useState([]);
+
+    return (
+        <>
+            <CartContext.Provider value={{numberCart, setnumberCart}}>
+                <Layout>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="/:id" element={<CardPage />} />
+                            <Route path="/cart" element={<CartPage />} />
+                        </Routes>
+                    </BrowserRouter>
+                </Layout>
+            </CartContext.Provider>
+        </>
+    );
 }
