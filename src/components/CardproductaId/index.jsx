@@ -1,12 +1,24 @@
-export default function CardproductId({imges , title , price}) {
+export default function CardproductId({imges , title , price , description}) {
     
     return (     
         <>
-        <div className="flex flex-col justify-center items-center p-4 m-10 bg-amber-200 rounded-2xl">
-            <h1 className="line-clamp-1">{title}</h1>
-<img className="w-56" src={imges} alt="" />
-<p>قیمت: {price}</p>
+     <div className="md:flex md:justify-between md:p-4">
+     <h1 className="md:hidden text-center font-extrabold p-4 bg-amber-50">{title}</h1>
+<p className="font-bold md:hidden text-center" dir="rtl">قیمت: {price}</p>
+<p className=" md:hidden text-center">{description}</p>
+
+
+        <div className="flex justify-center p-2  bg-amber-50">
+<img className="md:w-94 w-64 border  " src={imges} alt="" />
         </div>
+
+<div className="flex flex-col ">
+            <h1 className="text-2xl font-extrabold hidden md:block">{title}</h1>
+<p className="font-bold md:block hidden" dir="rtl">قیمت: {price}</p>
+<p className=" md:block hidden">{description}</p>
+</div>
+
+     </div>
         </>
     )
 }

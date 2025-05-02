@@ -10,7 +10,7 @@ export default function HomePage({numberCart}) {
         <>
     
         <Home  />
-        <div className="mb-24">
+        <div className="mb-24 md:grid md:grid-cols-4 p-4">
         <Cardproduct numberCart={numberCart} />
         </div>
 

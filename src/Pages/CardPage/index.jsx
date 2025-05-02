@@ -22,5 +22,7 @@ export default function CardPage({numberCart}) {
     numberCart={numberCart}
     imges={productdate?.image} 
     title={productdate?.title} 
-    price={productdate?.price} />
+    price={productdate?.price}
+    description={productdate?.description}
+    />
 }

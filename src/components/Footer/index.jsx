@@ -6,7 +6,7 @@ export default function Footer() {
     return (
     <>
     
-    <div className="h-20 w-full bg-amber-50 fixed bottom-0 items-center p-6 flex justify-between ">
+    <div className="h-20 w-full md:hidden bg-amber-50 fixed bottom-0 items-center p-6 flex justify-between ">
 
 <div>
 <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 16 16" fill="none">

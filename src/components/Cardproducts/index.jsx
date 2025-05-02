@@ -70,9 +70,9 @@ if(quantityRe === 1) {
     <>
   
     <div className="p-2 flex flex-col justify-center items-center ">
-    <div onClick={() => handelproduct(itme.id)} className=" w-full max-w-96 h-56 max-h-52  border rounded-2xl">
-            <div  className="grid grid-cols-2">
-                    <img className="w-40 bg-contain p-2 h-40 " src={itme.image} alt="" />
+    <div onClick={() => handelproduct(itme.id)} className=" w-full max-w-96 h-56 max-h-52 md:max-h-96 md:h-96 border rounded-2xl">
+            <div  className="grid grid-cols-2 md:block">
+                    <img className="w-40 bg-contain p-2 h-40 md:w-full md:h-64 " src={itme.image} alt="" />
                   <div className="p-2 flex flex-col items-center justify-center">
                       <h3 className="line-clamp-1">{itme.title}</h3>
                       <p className="text-center">price: ${itme.price}</p>
