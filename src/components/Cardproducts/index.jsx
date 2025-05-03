@@ -5,6 +5,8 @@ import CartContext from "../../contexts/Cartcontext";
 export default function Cardproduct() {
     const { numberCart , setnumberCart } = useContext(CartContext);
         const [product , setproduct] = useState([])
+        const [addItme , setAddItme] = useState({})
+
      const nav = useNavigate() 
      const loc = useLocation()
 
@@ -22,47 +24,61 @@ if(loc.pathname === "/:id") {
             .then(data => setproduct(data));
         } , [])
 
-const getQuantity = (id) => {
-    return numberCart?.find((item) => item.id === id)?.quantity || 0;
-  };
-
-        const quantity = useMemo(() => {
-            return (id) => getQuantity(id);
-          }, [numberCart]);
 
 
 
-        function addCart(evt , id) {
+        function AddendItme(evt , id) {
 evt.stopPropagation()
-const isin = numberCart?.find(itme => itme.id === id)
+setAddItme(prev => ( {
+    ...prev , 
+    [id] : (prev[id] || 0) + 1
+}))
+        }
 
-if(isin) {
-    setnumberCart(numberCart.map(itme => itme.id === id ? {...itme , quantity: itme.quantity + 1} : itme))
+        function remove(evt , id) {
+            evt.stopPropagation()
+            setAddItme(prev => {
+    const Val = prev[id] || 0
+    const newVal = Val > 0 ? Val - 1 : 0
+    return {
+        ...prev,
+    [id]: newVal
+    }
+            })
+        }
+        const Addtocart = (evt , id) => {
+            evt.stopPropagation()
+         if(!addItme[id] || addItme[id] === 0) {
+            return
+         }
+            const quantity = addItme[id] || 1
 
-} else {
-    debugger
-    setnumberCart([...(numberCart || [] ), {id , quantity : 1}])
-}
+            setnumberCart(prev => {
+                const indexitme = prev?.findIndex(itme => itme.id === id)
+                
+                if (indexitme >= 0) {
+                    const newCart = [...prev]
+                    newCart[indexitme] = {
+                        ...newCart[indexitme],
+                        quantity : newCart[indexitme].quantity + quantity
 
+                    }
+                    return newCart
+                }
+                return [...(prev || []) , {id , quantity}]
+            })
+            setAddItme(prev => ({...prev , [id]: 0}))
         }
    
 
         function removeCart(evt , id) {
 evt.stopPropagation()
-const quantityRe = quantity(id);
-          if (!quantityRe){
-            return
-          } 
-if(quantityRe === 1) {
-    setnumberCart(numberCart.filter(itme => itme.id != id))
-} else {
-    setnumberCart(numberCart?.map(itme => itme.id === id ? {...itme , quantity: itme.quantity - 1} :
-        itme
-    ))
-}
-
+setnumberCart(itme => itme?.filter(item => item.id !== id) || [])
         }
-
+const Getcart = (id) => {
+const item = numberCart?.find(item => item.id === id)
+return item ? item.quantity : 0
+}
     return (
         
         <>
@@ -80,10 +96,12 @@ if(quantityRe === 1) {
                 </div>  
 
                   <div className="flex gap-2  justify-center items-center  ">
-<div onClick={(evt) => addCart(evt, itme.id)} className="bg-green-700 rounded-3xl"><p className="px-4 py-1">Add cart</p></div>
-<p>{quantity(itme.id) || 0}</p>
-<div onClick={(evt) => removeCart(evt, itme.id)} className="bg-red-700 rounded-3xl "><p className="px-4 py-1">Remove cart</p></div>
-
+<button className="bg-green-600 w-8 text-center rounded-3xl" onClick={(e) => AddendItme(e , itme.id)}>+</button>
+<p>{addItme[itme.id ]|| 0}</p>
+<button className="bg-red-600 w-8 text-center rounded-3xl" onClick={(e) => remove(e , itme.id)}>-</button>
+<div onClick={(evt) => Addtocart(evt, itme.id)} className="bg-green-700 rounded-3xl"><p className="px-4 py-1">تایید</p></div>
+<div onClick={(evt) => removeCart(evt, itme.id)} className="bg-red-700 rounded-3xl "><p className="px-4 py-1">حذف</p></div>
+<span className="sm:hidden md:block">در سبد: {Getcart(itme.id)}</span>
                   </div>
 
               </div>
