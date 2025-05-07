@@ -1,7 +1,7 @@
 export default function Header() {
     return (
         <>
-        <div className="flex justify-between p-2">
+        <div className="flex justify-between p-2 md:hidden">
 
         <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24.00 24.00" fill="none" stroke="#000000">

@@ -1,10 +1,10 @@
 export default function Home () {
     return (
         <>
-        <div className="p-2">
+        <div className="p-2 md:text-center">
        <h1 className=" text-2xl text-gray-400">Welcome, Parsi </h1>
 <p className="font-bold ">Lorem, ipsum dolor sit amet</p>
-<div className="mt-4 flex justify-center items-center gap-2">
+<div className="mt-4 flex justify-center items-center gap-2 md:hidden">
 <input className="border p-1 rounded" type="search" />
 <div className="bg-[#400d54] p-1 rounded">
 
