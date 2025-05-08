@@ -58,7 +58,11 @@ export default function Cardproduct() {
                             <div className="flex gap-2  justify-center items-center  ">
                                 <button className="bg-green-600 w-8 text-center rounded-3xl" onClick={(e) => {
                                     e.stopPropagation(
-                                        AddCart(itme.id)
+                                        AddCart({  
+                                            id: itme.id,
+                                            title: itme.title,
+                                            price: itme.price
+                                        })
                                     )
                                 }}>+</button>
                                 <p>{GetQuantity(itme.id)}</p>

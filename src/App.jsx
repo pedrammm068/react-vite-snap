@@ -11,6 +11,9 @@ export default function App() {
 
     return (
         <>
+        <div className="md:flex md:flex-col md:justify-center md:items-center">
+
+        <div className="md:max-w-[1360px] w-full">
             <CartContext.Provider value={{numberCart, setnumberCart}}>
                 <Layout>
                     <BrowserRouter>
@@ -22,6 +25,8 @@ export default function App() {
                     </BrowserRouter>
                 </Layout>
             </CartContext.Provider>
+            </div>
+        </div>
         </>
     );
 }

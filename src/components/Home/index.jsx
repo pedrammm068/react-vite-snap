@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom"
+
 export default function Home () {
+    const navi = useNavigate()
     return (
         <>
         <div className="p-2 md:text-center">
@@ -22,9 +25,7 @@ export default function Home () {
 </div>
 
 <div className="flex gap-5 justify-center pt-5">
-    <div className="text-gray-300 border pl-5 pr-5 p-1 rounded bg-fuchsia-700"><p>home</p></div>
-    <div className="text-gray-300 border pl-5 pr-5 p-1  rounded bg-fuchsia-700"><p>cart</p></div>
-    <div className="text-gray-300 border pl-5 pr-5 p-1 rounded bg-fuchsia-700"><p>about</p></div>
+    <div onClick={() => navi("/cart")} className="text-gray-300 border pl-5 pr-5 p-1  rounded bg-fuchsia-700"><p>cart</p></div>
 </div>
 
 

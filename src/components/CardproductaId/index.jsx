@@ -1,9 +1,9 @@
 import { useMemo } from "react"
 import useCart from "../../storeZTak/zusTak"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 export default function CardproductId({imges , title , price , description}) {
-    
+    const nav = useNavigate()
     const {products , AddCart , RemoveCart} = useCart()
      const { id } = useParams()
       const proId =  Number(id) 
@@ -13,8 +13,8 @@ export default function CardproductId({imges , title , price , description}) {
         <>
         <div className="bg-cyan-400 w-full p-4">
             <ul className="flex gap-6 text-white">
-                <li>Home</li>
-                <li>{title}</li>
+                <li className="bg-cyan-200 p-1 rounded" onClick={() => nav("/")}>Home</li>
+                <li className="p-1">{title}</li>
             </ul>
         </div>
      <div className="md:flex md:justify-between md:p-4">
